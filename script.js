@@ -24,8 +24,24 @@ function playRound(userChoice, computerChoice) {
     }
 }
 
+function checkInput(userChoice) {
+    if (userChoice === "rock" || userChoice === "paper" || userChoice === "scissors") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function game() {
     let userChoice = prompt("请输入您的选择：(rock | paper | scissors)")
+    // userChoice不区分大小写
+    userChoice = userChoice.toLowerCase();
+    // 如果userChoice输入错误，则提醒按照指定内容输入
+    while (!checkInput(userChoice)){
+        alert("请按照指定内容输入");
+        userChoice = prompt("请输入您的选择：(rock | paper | scissors)")
+        userChoice = userChoice.toLowerCase();
+    }
     let computerChoice = getComputerChoice();
     let result = playRound(userChoice, computerChoice); 
     if (result === "你赢了") {
